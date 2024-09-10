@@ -1,0 +1,45 @@
+## inverse-variance method (the weight given to each study is the inverse of the variance of the effect estimate: larger studies are given more weight than smaller studies, which have larger standard errors)
+MARKER cptid
+ALLELE 	EFFECT_ALLELE OTHER_ALLELE
+EFFECT BETA	
+FREQLABEL EAF
+PVALUE PVAL
+CUSTOMVARIABLE N
+LABEL N AS N
+STDERR SE
+SCHEME STDERR
+AVERAGEFREQ ON
+MINMAXFREQ ON
+VERBOSE OFF
+#ADDFILTER EAF > 0.01
+#ADDFILTER EAF < 0.99
+GENOMICCONTROL ON
+
+## sample-size-weighted meta-analysis for cross-ancestry meta-analysis 
+# MARKER MarkerName
+# ALLELE 	Allele1 Allele2
+# EFFECT Effect	
+# FREQLABEL Freq1
+# PVALUE Pvalue
+# WEIGHT N
+# CUSTOMVARIABLE N
+# LABEL N AS N
+# STDERR StdErr
+# SCHEME SAMPLESIZE 
+# AVERAGEFREQ ON
+# MINMAXFREQ ON
+# VERBOSE OFF
+# ADDFILTER EAF > 0.01
+# ADDFILTER EAF < 0.99
+# GENOMICCONTROL OFF # to avoid overcorrection
+
+
+PROCESS /path/to/input/file1
+PROCESS /path/to/input/file2
+PROCESS /path/to/input/file3
+PROCESS /path/to/input/file4
+OUTFILE /path/to/output/file.TBL
+
+ANALYZE HETEROGENEITY
+CLEAR
+
