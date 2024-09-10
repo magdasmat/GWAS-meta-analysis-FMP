@@ -203,3 +203,46 @@ dim(newaric)  # Filtered dataset, although this is performed by the quality cont
 write.csv(aric, "path_to_final_output_file_for_ARIC", row.names = FALSE, sep = ",", quote = FALSE)
 
 
+# ----------------------------------------
+# PMBB Cohort - European Ancestry 
+# ----------------------------------------
+
+# Some cohorts provide some difficulties que hay que arreglar, como allele frequencies que están dados del revés (el coding allele te lo dan como el Alternative allele)
+
+# Load the data from the specified zip file
+pmbb <- fread("/path/to/PMBB_EA_APTT_FREEZE5_AUTO_06JUN2024.zip")
+
+# Display the first few rows of the modified data
+head(pmbb)
+
+# Rename columns to simplify later processing
+pmbb <- pmbb %>%
+  rename(SNPID = MARKERID,
+         oevar_imp = R2,
+         AF_coded = AF_ALLELE2,
+         n_total = N)
+
+# Reorder columns: Place specified columns at the beginning and keep others at the end
+pmbb <- pmbb %>%
+  select(SNPID, A1, A2, AF_coded, BETA, SE, P, n_total, oevar_imp, everything())
+
+# Display the first few rows of the reordered data
+head(pmbb)
+
+# Adjust allele frequency if given in the opposite direction
+# Some cohorts present some difficulties that need to be fixed, such as allele frequencies given in reverse (the coding allele is provided as the alternative allele)
+pmbb <- pmbb %>%
+  mutate(AF_coded = 1 - AF_coded)
+
+# Adjust BETA values
+pmbb <- pmbb %>%
+  mutate(BETA = -1 * BETA)
+
+# Convert the 'oevar_imp' column to numeric
+pmbb$oevar_imp <- as.numeric(pmbb$oevar_imp)
+
+# Save the cleaned data to a .txt file and compress it using bgzip
+fwrite(pmbb, "/path/to/PMBB_EA_APTT_FREEZE5_AUTO_06JUN2024_af_B.txt", sep ="\t")
+system("bgzip /path/to/PMBB_EA_APTT_FREEZE5_AUTO_06JUN2024_af_B.txt")
+
+
