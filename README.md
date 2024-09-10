@@ -45,7 +45,7 @@ Prediction and Meta-analysis (PrediXcan and MetaXcan softwares):
 # Visualization
 Visualization scripts are available in the plots folder:
 
-PrediXcan z-score plot: zscoreplot_predixcan.R
-Top SNPs Manhattan plot: topsnps_manhattan_plot.R
+- PrediXcan z-score plot: zscoreplot_predixcan.R
+- Top SNPs Manhattan plot: topsnps_manhattan_plot.R
 
 
