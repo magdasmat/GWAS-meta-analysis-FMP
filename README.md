@@ -18,5 +18,10 @@ The scripts and data provided here are intended for reproducibility and further 
 
 # 1. GWAS data preprocessing
 
-The code used during the data harmonisation of the provided cohorts is included in the R folder with the name xxxx
+The code used during the data harmonisation of the provided cohorts is included in the R folder with the name GWAS_data_processing.R
+
+# 2. Quality Control performed with EasyQC
+
+
+
 
