@@ -11,22 +11,25 @@ Workflow Diagram of the procedures conducted in this project:
 - **Tables**: Data tables and summary statistics.
 
 ## Objective
-The main goal of this project is to identify genetic variants associated with aPTT through a comprehensive meta-analysis of genome-wide association studies (GWAS). 
+The main goal of this project is to identify genetic variants or SNPs associated with aPTT through a comprehensive meta-analysis of genome-wide association studies (GWAS), using GWAS data from multiple cohorts provided by The Cohorts for Heart and Aging Research in Genomic Epidemiology (CHARGE) consortium. 
+
+![image](https://github.com/user-attachments/assets/b54a6fb2-504e-4c31-837a-eb5f8f0dd4be)
+
 
 ## Usage
 The scripts and data provided here are intended for reproducibility and further analysis. Feel free to explore and adapt the material for related studies or projects.
 
-# GWAS data preprocessing
+# 1. GWAS data preprocessing
 
 The code used during the data harmonisation of the provided cohorts is included in the R folder with the name GWAS_data_processing.R
+In this procedure, we made an inverse normal transformation in order to have the same beta and standard error scale within every dataset.
 
-# Quality Control performed with EasyQC and Meta-analysis performed with METAL software
+# 2. Quality Control performed with EasyQC and Meta-analysis performed with METAL software
 
-We first performed quality control using EasyQC package from R. Then, we performed the meta-analysis using METAL software.
+After harmonisation, we performed quality control using EasyQC package from R. Model scripts with the corresponding quality standards are located in the tools folder with the name EasyQC_script.ecf.
+Then, we performed the meta-analysis using METAL software. Model scripts used for this tool is located in the tools folder with the name MetalScript.txt
 
-Scripts used for this tools are located in the tools folder with the name EasyQC_script.ecf and MetalScript.txt
-
-# Top tables
+# 3. Top tables
 
 To process meta-analysis dataframes and extract the top SNPs, use the script located in the R folder: script_toptable_metaanalysis.R
 
